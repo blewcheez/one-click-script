@@ -81,9 +81,9 @@ Get-PhysicalDisk | Select DeviceID, MediaType, Size, SerialNumber, HealthStatus 
 # Done
 Stop-Transcript
 Write-Host "`nBasic diagnostics complete! Log saved to:`n$LogPath" 
-Pause
 
 
+Read-Host -Prompt "Press Enter to close"
 
 
 
