@@ -1,1 +1,43 @@
-# one-click-script
+# Simple Diagnosis Script for: Network, Performance, & Storage    
+# Author: Wade 
+
+$ComputerName = $env:COMPUTERNAME 
+$TimeStamp = Get-Date -Format "yyyyMMdd_HHmmss"
+$Logpath = "$env:USERPROFILE\Desktop\Basic_Diagnostics_$ComputerName_$TimeStamp.txt" 
+
+Write-Host "'nRunning basic diagnostics...'n"
+
+#-----------------------------------------------
+# NETWORK DIAGNOSTICS
+#-----------------------------------------------
+Write-Host "NETWORK CHECKS"
+
+# Flush DNS
+Write-Host "'nFllushing DNS cache..." 
+ipconfig /flushdns 
+
+# Restarting Network Adaptes(s)
+Write-Host "'nRestarting network adapters...."
+Get-NetAdapter | Restart-NetAdapter -Confirm:$false
+
+# Display IP Configuration
+Write-Host "'nCurrent IP Configuration:" 
+ipconfig /all 
+
+# Ping Google + Gateway
+Write-Host "'nPinging Internet (Google)..."
+Test-Connection -ComputerName 8.8.8.8 -Count 4
+
+Write-Host "'nPinging default gateway..."
+$gateway = (Get-NetRoute - DestinationPrefix "0.0.0.0/0").NextHop
+if ($gateway) { 
+  Test-Connection -ComputerName $gateway -Count 4 
+  } else { 
+    Write-Host "No default gateway detected." 
+  } 
+
+# ------------------------------------------------
+#  PERFORMANCE DIAGNOSTICS 
+# ------------------------------------------------
+# Write-Host "'nPERFORMANCE CHECKS" 
+
