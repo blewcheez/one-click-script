@@ -41,3 +41,39 @@ if ($gateway) {
 # ------------------------------------------------
 # Write-Host "'nPERFORMANCE CHECKS" 
 
+# CPU & RAM Usage
+$cpuUsage = (Get-Counter '\Processor(_Total)\%Processor Time').CounterSamples.CookedValue
+$ram = Get-CimInstance -ClassName Win32_OperatingSystem
+$freeMem = [math]::Round($ram.FreePhysicalMemory / 1MB, 2) 
+$totalMem = [math]::Round($ram.TotalVisibleMemorySize / 1MB, 2) 
+$usedMem = [math]::Round($totalMem - $freeMem, 2) 
+$memPercent = [math]::Round((#usedMem / $totalMem) * 100, 1) 
+
+Write-Host "'nCPU Usage: $([math]::Round($cpuUasage, 2))%"
+Write-Host "RAM Usage: $usedMem GB / $totalMem GB ($memPercent%)" 
+
+# Top Resource-Consuming Processes
+Write-Host "'nTop 10 CPU-Consuming Processes:"
+Get-Process | Sort CPU -Decending | Select -First 10 | Format-Table Name, CPU, -AutoSize 
+
+Write-Host "'nTop Top Memory-Consuming Processes:" 
+Get-Process | Sort WorkingSet -Decending | Select -First 10 | Format-Table Name, @{Name="Memory(MB)";Expression={[math]::Round($_.WorkinSet / 1MB, 1)}}, ID -AutoSize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
