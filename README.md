@@ -1,3 +1,30 @@
+<h1 align ="center">IT Trouble Shooting Script</h1>
+<img src="https://i.imgur.com/ZsI7n12.jpeg" align="center" height="90%" width="90%" > 
+
+
+
+<h3 align ="center"> How to run</h3> 
+
+- Download the File "_SimpleDiagnostics.ps1" that is located within this same branch.
+  
+<p align="center"> (copy the file path in which your "_SimpleDiagnostics.ps1" file is located)  </p>
+
+- Run Windows PowerShell as admin
+
+- To Bypass the Policy Temporarily Copy & Paste: "powershell -ExecutionPolicy Bypass -File "C:\Path\To\Your\Script\_SimpleDiagnostics.ps1"
+
+
+<p align="center"> Proceed to hit enter, and diagnose your Network, Performance, & Storage. </p>
+
+
+
+<br></br> 
+<br></br> 
+
+
+<h3 align="center">Code for Script</h3>
+<br></br> 
+<p> 
 # Simple Diagnosis Script for: Network, Performance, & Storage    
 # Author: Wade
 
@@ -95,6 +122,8 @@ Write-Host "`nBasic diagnostics complete! Log saved to:`n$LogPath"
 
 
 Read-Host -Prompt "Press Enter to close"
+
+</p>
 
 
 
