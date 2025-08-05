@@ -1,5 +1,5 @@
 # Simple Diagnosis Script for: Network, Performance, & Storage    
-# Author: Wade 
+# Author: Wade
 
 $ComputerName = $env:COMPUTERNAME 
 $TimeStamp = Get-Date -Format "yyyyMMdd_HHmmss"
