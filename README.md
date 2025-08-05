@@ -11,7 +11,7 @@
 
 - Run Windows PowerShell as admin
 
-- To Bypass the Policy Temporarily Copy & Paste: "powershell -ExecutionPolicy Bypass -File "C:\Path\To\Your\Script\_SimpleDiagnostics.ps1"
+- To Bypass the Policy Temporarily Copy & Paste: "powershell -ExecutionPolicy Bypass -File "C:\Path\To\YourScript\ _SimpleDiagnostics.ps1"
 
 
 <p align="center"> Proceed to hit enter, and diagnose your Network, Performance, & Storage. </p>
