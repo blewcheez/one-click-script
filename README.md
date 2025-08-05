@@ -28,15 +28,26 @@ ipconfig /all
 
 # Ping Google + Gateway
 Write-Host "`nPinging Internet (Google)..."
-Test-Connection -ComputerName 8.8.8.8 -Count 4
+try {
+    $pingResult = Test-Connection -ComputerName 8.8.8.8 -Count 4 -ErrorAction Stop
+    Write-Host "✅ Google is reachable."
+    $pingResult
+} catch {
+    Write-Host "❌ Unable to reach Google. No internet connection or firewall blocking ICMP." -ForegroundColor Yellow
+}
 
 Write-Host "`nPinging default gateway..."
-$gateway = (Get-NetRoute -DestinationPrefix "0.0.0.0/0").NextHop
-if ($gateway) { 
-  Test-Connection -ComputerName $gateway -Count 4 
-} else { 
-  Write-Host "No default gateway detected." 
-} 
+try {
+    $gateway = (Get-NetRoute -DestinationPrefix "0.0.0.0/0" -ErrorAction Stop).NextHop
+    if ($gateway) {
+        Test-Connection -ComputerName $gateway -Count 4 -ErrorAction Stop
+        Write-Host "✅ Gateway $gateway is reachable."
+    } else {
+        Write-Host "❌ No default gateway found." -ForegroundColor Yellow
+    }
+} catch {
+    Write-Host "❌ Could not detect or reach default gateway." -ForegroundColor Yellow
+}
 
 # ------------------------------------------------
 #  PERFORMANCE DIAGNOSTICS 
