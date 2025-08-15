@@ -1,7 +1,10 @@
 <h1 align ="center">IT Trouble Shooting Script</h1>
 <img src="https://i.imgur.com/ZsI7n12.jpeg" align="center" height="90%" width="90%" > 
 
+<h4 align="center"> Why is this helpful? </h4>
+<p align="center"> This is essentially a one-click script that would run multiple diagnostic commands like displaying IP configuration and flushing DNS cache etc.  </p>
 
+<br></br> 
 
 <h3 align ="center"> How to run</h3> 
 
